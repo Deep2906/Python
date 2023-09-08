@@ -1,0 +1,52 @@
+auth_dict = {"arun@google.com": emp1, "dipak@google.com": emp3, "harsh@google.com":emp2}
+def authenticator():
+  print("------  Welcome to the Portal  -------")
+  user_name = input("Enter your Username ")
+  if user_name in auth_dict:
+    pass_word = int(input("Enter your password "))
+    if pass_word == auth_dict[user_name][0]:
+      print("Authentication Successful!!")
+      print("----------------------------")
+      print(auth_dict[user_name][1:])
+    else:
+      print("Please Enter the right password!!")
+      print("----------------------------------")
+      response= input("Change the Password (Y/N) ")
+      if response == "Y":
+        password_change(user_name)
+      else:
+        print("Thank You for Using the Portal")
+
+  else:
+    print("Username does not exist!")
+    response_1 = input("Create a New AccountY/N) ")
+    if response_1 == "Y":
+      add_user()
+    else:
+      print("Thank You for Using the Portal")
+
+
+def password_change(user_name):
+
+  new_password = int(input("Please Enter the New Password  "))
+  auth_dict[user_name][0] = new_password
+  print("Password Successfully Changed!")
+  authenticator()
+
+
+def add_user():
+
+      new_user = input("Enter the user name")
+      if new_user in auth_dict:
+        print("Username already Exists!")
+
+      else:
+        temp_list = []
+        set_pass = int(input("Set a Password"))
+        temp_name =input("Enter Your Name ")
+        temp_age=int(input("Enter Your Age: "))
+        temp_designation =input("Enter Your  Designation: ")
+        temp_list = [set_pass, temp_name, temp_age, temp_designation]
+        auth_dict[new_user] = temp_list
+        print("Sucessfull added New User! ")
+      authenticator()
